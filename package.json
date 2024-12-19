@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:build": "tsc -w",
-    "start:run": "nodemon build/server.js",
+    "start:run": "nodemon build/index.js",
     "start": "concurrently npm:start:*"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
   "dependencies": {
     "concurrently": "^9.1.0",
     "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.11.5"
