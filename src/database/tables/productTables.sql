@@ -1,0 +1,8 @@
+--  CREATE TABLE products (
+--    id INT AUTO_INCREMENT PRIMARY KEY,
+--    name VARCHAR(255) NOT NULL,
+--    price FLOAT NOT NULL,
+--    description TEXT,
+--    quantity INT,
+--    category VARCHAR(255)
+--  );

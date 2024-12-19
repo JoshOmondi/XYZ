@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", // Specify ECMAScript target version
+    "module": "CommonJS", // Use CommonJS module system
+    "rootDir": "src", // Input directory
+    "outDir": "build", // Output directory
+    "strict": true, // Enable strict type checking
+    "esModuleInterop": true, // Import compatibility for CommonJS
+    "skipLibCheck": true, // Skip type checks for libraries
+    "types": ["node"]
+  },
+  "include": ["src"], // Include these files
+  "exclude": ["node_modules"] // Exclude these files
+}
