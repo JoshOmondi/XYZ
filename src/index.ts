@@ -20,19 +20,30 @@ app.use("/api/farmers", farmerRoutes);
 // Error Handler Middleware
 app.use(
   (
-    err: any,
+    err: unknown, // err is now explicitly typed as 'unknown'
     req: express.Request,
     res: express.Response,
     next: express.NextFunction
   ) => {
-    res
-      .status(err.status || 500)
-      .json({ message: err.message || "Internal Server Error" });
+    if (err instanceof Error) {
+      // Handle if 'err' is an instance of Error
+      res.status(500).json({ message: err.message || "Internal Server Error" });
+    } else {
+      // Handle any other type of error
+      res.status(500).json({ message: "An unknown error occurred" });
+    }
   }
 );
 
 // Connect to the database
-connectToDatabase();
+(async () => {
+  try {
+    await connectToDatabase();
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+    process.exit(1); // Exit the app if the database connection fails
+  }
+})();
 
 // Start the server
 const PORT = process.env.PORT || 3000;
