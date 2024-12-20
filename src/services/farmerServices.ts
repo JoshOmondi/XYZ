@@ -1,4 +1,8 @@
-import pool from "../config/dbConfig";
+import { dbConfig } from "../config/dbConfig"; // Adjust the import if needed
+import mysql from "mysql2/promise";
+
+// Create a pool using the dbConfig
+const pool = mysql.createPool(dbConfig);
 
 /**
  * Retrieves all users from the database.

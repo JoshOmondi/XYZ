@@ -1,4 +1,8 @@
-import pool from "../config/dbConfig";
+import { dbConfig } from "../config/dbConfig"; // Adjust the path as needed
+import mysql from "mysql2/promise";
+
+// Create a pool using the dbConfig
+const pool = mysql.createPool(dbConfig);
 
 /**
  * Farmer Model
@@ -73,7 +77,7 @@ class Farmer {
       const { name, email, location } = updates;
       const [result] = await pool.query(
         "UPDATE farmers SET name = ?, email = ?, location = ? WHERE id = ?",
-        [name || null, email || null, location || null, id]
+        [name ?? null, email ?? null, location ?? null, id]
       );
       return result;
     } catch (error) {
