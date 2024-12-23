@@ -1,0 +1,6 @@
+-- DELIMITER //
+-- CREATE PROCEDURE GetFarmerProducts(IN farmerId INT)
+-- BEGIN
+--     SELECT * FROM products WHERE farmer_id = farmerId;
+-- END //
+-- DELIMITER ;

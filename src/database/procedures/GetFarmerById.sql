@@ -1,0 +1,6 @@
+DELIMITER //
+CREATE PROCEDURE GetFarmerById(IN farmerId INT)
+BEGIN
+    SELECT * FROM farmers WHERE id = farmerId;
+END //
+DELIMITER ;

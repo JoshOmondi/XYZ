@@ -1,0 +1,6 @@
+DELIMITER //
+CREATE PROCEDURE GetAllFarmers()
+BEGIN
+    SELECT * FROM farmers;
+END //
+DELIMITER ;
