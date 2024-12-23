@@ -11,7 +11,7 @@ export const dbConfig = {
   user: process.env.DB_USER || "sa",
   password: process.env.DB_PWD || "",
   database: process.env.DB_NAME || "",
-  port: parseInt(process.env.DB_PORT || "3306", 10), // Default MySQL port is 3306
+  port: parseInt(process.env.DB_PORT || "3307", 10), // Default MySQL port is 3306
   waitForConnections: true,
   connectionLimit: 10, // Maximum number of connections in the pool
   queueLimit: 0, // No limit for connection queue
