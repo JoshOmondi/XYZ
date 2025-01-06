@@ -1,21 +1,21 @@
 import * as dotenv from "dotenv";
 import { createPool, Pool } from "mysql2/promise";
 
-dotenv.config();
+dotenv.config(); // Load environment variables from .env file
 
 /**
  * Database configuration object sourced from environment variables.
  */
 export const dbConfig = {
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "sa",
-  password: process.env.DB_PWD || "",
-  database: process.env.DB_NAME || "AGRICULTURE",
-  port: parseInt(process.env.DB_PORT || "30000", 10), // Default MySQL port is 3306
+  host: process.env.DB_HOST || "localhost", // Database host (default: localhost)
+  user: process.env.DB_USER || "sa", // Database username (default: 'sa')
+  password: process.env.DB_PWD || "", // Database password (default: empty string)
+  database: process.env.DB_NAME || "AGRICULTURE", // Database name (default: 'AGRICULTURE')
+  port: parseInt(process.env.DB_PORT || "3306", 10), // MySQL default port is 3306 (make sure this is correct)
   waitForConnections: true,
-  connectionLimit: 2000, // Maximum number of connections in the pool
+  connectionLimit: 10, // Maximum number of connections in the pool (you can adjust based on your need)
   queueLimit: 0, // No limit for connection queue
-  connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT || "30000", 10), // Default 10 seconds
+  connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT || "30000", 10), // Default 30 seconds
 };
 
 /**
@@ -33,15 +33,23 @@ export const connectToDatabase = async (): Promise<Pool> => {
 
     return pool; // Return the connection pool
   } catch (error) {
-    // Explicit error logging and re-throw for proper handling
+    // Log detailed error message if connection fails
     if (error instanceof Error) {
       console.error("Failed to connect to the database:", error.message);
+
+      // Handle specific error codes (e.g., timeout)
+      if (error.message.includes("ETIMEDOUT")) {
+        console.error(
+          "Database connection attempt timed out. Please check network or database server."
+        );
+      }
     } else {
       console.error(
         "Unexpected error while connecting to the database:",
         error
       );
     }
-    throw error; // Ensure the error propagates for caller handling
+
+    throw error; // Ensure the error propagates for proper handling by the caller
   }
 };
