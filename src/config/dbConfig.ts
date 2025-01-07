@@ -15,7 +15,7 @@ export const dbConfig = {
   waitForConnections: true,
   connectionLimit: 10, // Maximum number of connections in the pool (you can adjust based on your need)
   queueLimit: 0, // No limit for connection queue
-  connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT || "70000", 10), // Default 30 seconds
+  connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT || "30000", 10), // Default 30 seconds
 };
 
 /**
